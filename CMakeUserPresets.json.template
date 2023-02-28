@@ -1,0 +1,22 @@
+{
+  "version": 4,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 24,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "windows-msvc-debug",
+      "description": "Target Windows with the msvc compiler, debug build type and user configuration",
+      "inherits": "windows-msvc-debug-default",
+      "displayName": "MSVC Debug"
+    },
+    {
+      "name": "windows-msvc-release",
+      "description": "Target Windows with the msvc compiler, release build type and user configuration",
+      "inherits": "windows-msvc-release-default",
+      "displayName": "MSVC Release"
+    }
+  ]
+}
