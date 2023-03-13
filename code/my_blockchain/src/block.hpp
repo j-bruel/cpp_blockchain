@@ -17,6 +17,7 @@ namespace centor
 
   private:
     std::string compute_hash() const noexcept;
+    std::string generate_clear_hash() const noexcept;
 
     std::uint32_t index;
     std::uint32_t nonce{0};// number used once

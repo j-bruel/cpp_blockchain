@@ -1,11 +1,10 @@
 #include "block.hpp"
 
-#include <fmt/format.h>
-#include <cryptopp/sha.h>
 #include <cryptopp/hex.h>
-
-#include <string>
+#include <cryptopp/sha.h>
 #include <cstddef>
+#include <fmt/format.h>
+#include <string>
 
 namespace centor
 {
@@ -30,24 +29,34 @@ namespace centor
     return hash;
   }
 
+  static const std::string &convert_hash_to_hex_string(std::string &hash, const CryptoPP::byte *digest,
+                                                       size_t digest_length)
+  {
+    CryptoPP::HexEncoder hex_encoder;
+
+    hex_encoder.Attach(new CryptoPP::StringSink(hash));
+    hex_encoder.Put(digest, digest_length);
+    hex_encoder.MessageEnd();
+    return hash;
+  }
+
   std::string block::compute_hash() const noexcept
   {
-    std::string clear_hash = fmt::format("{}{}{}{}{}", index, time, data, nonce, parent_hash);
-    std::string hash_str;
-    CryptoPP::SHA256 hasher;
-
     CryptoPP::byte digest[CryptoPP::SHA256::DIGESTSIZE];
-    hasher.CalculateDigest(digest, (const CryptoPP::byte *)clear_hash.c_str(), clear_hash.length());
+    const auto clear_hash = generate_clear_hash();
+    std::string computed_hash;
 
-    // Convert the hash to a hex string
-    CryptoPP::HexEncoder encoder;
-
-    encoder.Attach(new CryptoPP::StringSink(hash_str));
-    encoder.Put(digest, sizeof(digest));
-    encoder.MessageEnd();
+    CryptoPP::SHA256().CalculateDigest(digest, reinterpret_cast<const CryptoPP::byte *>(clear_hash.c_str()),
+                                       clear_hash.length());
+    computed_hash = convert_hash_to_hex_string(computed_hash, digest, sizeof(digest));
     std::cout << "clear: " << clear_hash << std::endl;
-    std::cout << "hash: " << hash_str << std::endl;
-    return hash_str;
+    std::cout << "hash: " << computed_hash << std::endl;
+    return computed_hash;
+  }
+
+  std::string block::generate_clear_hash() const noexcept
+  {
+    return fmt::format("{}{}{}{}{}", index, time, data, nonce, parent_hash);
   }
 
 
