@@ -13,7 +13,7 @@ namespace centor
 
   block::block(std::uint32_t index, const std::string &data) noexcept : index(index), data(data) { }
 
-  void block::self_mine_hash_block(unsigned int difficulty) noexcept
+  void block::self_mine_hash_block(std::uint32_t difficulty) noexcept
   {
     std::string hash_leading_zeros(difficulty, '0');
     std::string tmp_hash;
@@ -29,6 +29,11 @@ namespace centor
   std::string block::get_hash() const noexcept
   {
     return hash;
+  }
+
+  void block::link_parent_block(const block &parent_block) noexcept
+  {
+    parent_hash = parent_block.hash;
   }
 
   static const std::string &

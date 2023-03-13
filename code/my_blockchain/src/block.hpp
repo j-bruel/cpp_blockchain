@@ -12,8 +12,9 @@ namespace centor
     explicit block(std::uint32_t index, const std::string &data) noexcept;
 
     // @param difficulty Leading zeros (or prefix zeros) of the hash determining the difficulty of mining this new block.
-    void self_mine_hash_block(unsigned int difficulty) noexcept;
+    void self_mine_hash_block(std::uint32_t difficulty) noexcept;
     std::string get_hash() const noexcept;
+    void link_parent_block(const block &parent_block) noexcept;
 
   private:
     std::string compute_hash() const noexcept;

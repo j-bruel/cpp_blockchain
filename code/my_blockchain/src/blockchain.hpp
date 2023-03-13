@@ -11,14 +11,14 @@ namespace centor
   class blockchain final
   {
   public:
-    blockchain();
+    blockchain() noexcept;
 
-    void add_block(const block &new_block);
+    void add_block(std::uint32_t block_index, const std::string &block_data);
 
   private:
-    std::optional<block> get_last_block() const;
+    std::optional<block> get_last_block() const noexcept;
 
-    unsigned int difficulty;
+    std::uint32_t difficulty;
     std::vector<block> chain;
   };
 

@@ -3,7 +3,9 @@ project(my_blockchain)
 find_package(fmt REQUIRED)
 find_package(cryptopp CONFIG REQUIRED)
 
-set(CPP_SOURCES "src/main.cpp" "src/block.cpp")
+set(CPP_SOURCES "src/main.cpp"
+				"src/block.cpp"
+				"src/blockchain.cpp")
 
 add_executable(${PROJECT_NAME})
 
