@@ -1,6 +1,6 @@
 project(my_blockchain)
 
-set(CPP_SOURCES "src/main.cpp")
+set(CPP_SOURCES "src/main.cpp" "src/block.cpp")
 
 add_executable(${PROJECT_NAME})
 
