@@ -24,6 +24,7 @@ namespace centor
       tmp_hash = compute_hash();
     }
     hash = tmp_hash;
+    std::cout << "New block mined : " << hash << std::endl;
   }
 
   std::string block::get_hash() const noexcept
@@ -55,8 +56,8 @@ namespace centor
     CryptoPP::SHA256().CalculateDigest(digest.data(), reinterpret_cast<const CryptoPP::byte *>(clear_hash.data()),
                                        clear_hash.length());
     computed_hash = convert_hash_to_hex_string(computed_hash, digest);
-    std::cout << "clear: " << clear_hash << std::endl;
-    std::cout << "hash: " << computed_hash << std::endl;
+//    std::cout << "clear: " << clear_hash << std::endl;
+    //    std::cout << "hash: " << computed_hash << std::endl;
     return computed_hash;
   }
 
