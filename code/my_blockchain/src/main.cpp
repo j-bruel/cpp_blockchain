@@ -4,12 +4,14 @@
 #include <fmt/format.h>
 #include <future>
 #include <iostream>
+#include <spdlog/spdlog.h>
 
 int main(int argc, const char * const *argv)
 {
   centor::blockchain blockchain;
   int block_number = 1;
 
+  spdlog::info("Custom blockchain is launched.");
   while (true)
   {
     auto add_block = std::async(std::launch::async,

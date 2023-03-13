@@ -2,11 +2,12 @@
 #include "blockchain_handling_exception.hpp"
 
 #include <iostream>
+#include <spdlog/spdlog.h>
 
 namespace centor
 {
 
-  static constexpr auto leading_zeros = 3;
+  static constexpr auto leading_zeros = 4;
 
   blockchain::blockchain() noexcept : difficulty(leading_zeros)
   {
@@ -23,7 +24,7 @@ namespace centor
     new_block.link_parent_block(*last_block);
     new_block.self_mine_hash_block(difficulty);
     chain.push_back(new_block);
-    std::cout << "Block added to the chain : " << new_block.get_hash() << std::endl;
+    spdlog::info("Block added to the chain {}!", new_block.get_hash());
   }
 
   std::optional<block> blockchain::get_last_block() const noexcept
