@@ -10,13 +10,19 @@
       "name": "windows-msvc-debug",
       "description": "Target Windows with the msvc compiler, debug build type and user configuration",
       "inherits": "windows-msvc-debug-default",
-      "displayName": "MSVC Debug"
+      "displayName": "MSVC Debug",
+      "cacheVariables": {
+        "ENABLE_CLANG_TIDY": true
+      }
     },
     {
       "name": "windows-msvc-release",
       "description": "Target Windows with the msvc compiler, release build type and user configuration",
       "inherits": "windows-msvc-release-default",
-      "displayName": "MSVC Release"
+      "displayName": "MSVC Release",
+      "cacheVariables": {
+        "ENABLE_CLANG_TIDY": true
+      }
     }
   ]
 }

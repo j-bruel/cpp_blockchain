@@ -12,7 +12,10 @@
       "hidden": true,
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/${presetName}",
-      "installDir": "${sourceDir}/out/${presetName}/install"
+      "installDir": "${sourceDir}/out/${presetName}/install",
+      "cacheVariables": {
+        "ENABLE_CLANG_TIDY": false
+      }
     },
     {
       "name": "windows-common",
