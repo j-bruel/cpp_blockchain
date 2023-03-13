@@ -33,7 +33,11 @@
       },
       "cacheVariables": {
         "CMAKE_C_COMPILER": "cl",
-        "CMAKE_CXX_COMPILER": "cl"
+        "CMAKE_CXX_COMPILER": "cl",
+        "CMAKE_TOOLCHAIN_FILE": {
+          "type": "FILEPATH",
+          "value": "${sourceDir}\\..\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
+        }
       }
     },
     {
