@@ -11,7 +11,7 @@
 namespace centor
 {
 
-  block::block(std::uint32_t block_index, const std::string_view &block_data) noexcept :
+  block::block(std::uint32_t block_index, const std::string &block_data) noexcept :
     index(block_index), data(block_data)
   {
   }
@@ -34,7 +34,7 @@ namespace centor
     parent_hash = parent_block.hash;
   }
 
-  std::string_view block::get_data() const noexcept
+  std::string block::get_data() const noexcept
   {
     return data;
   }
