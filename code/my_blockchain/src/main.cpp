@@ -6,7 +6,7 @@
 #include <iostream>
 #include <spdlog/spdlog.h>
 
-int main(int argc, const char * const *argv)
+int main()
 {
   centor::blockchain blockchain;
   int block_number = 1;

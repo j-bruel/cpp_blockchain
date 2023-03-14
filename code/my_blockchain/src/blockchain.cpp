@@ -12,7 +12,7 @@ namespace centor
 
   blockchain::blockchain() noexcept : difficulty(leading_zeros)
   {
-    chain.emplace_back(block(0, "Genesis Block"));
+    chain.emplace_back(0, "Genesis Block");
   }
 
   void blockchain::add_block(std::uint32_t block_index, const std::string &block_data)

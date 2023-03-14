@@ -11,11 +11,14 @@
 namespace centor
 {
 
-  block::block(std::uint32_t index, const std::string &data) noexcept : index(index), data(data) { }
+  block::block(std::uint32_t block_index, std::string_view block_data) noexcept :
+    index(block_index), data(std::move(block_data))
+  {
+  }
 
   void block::self_mine_hash_block(std::uint32_t difficulty) noexcept
   {
-    std::string hash_leading_zeros(difficulty, '0');
+    const std::string hash_leading_zeros(difficulty, '0');
     std::string tmp_hash;
 
     while (tmp_hash.substr(0, difficulty) != hash_leading_zeros)
@@ -31,7 +34,7 @@ namespace centor
     parent_hash = parent_block.hash;
   }
 
-  std::string block::get_data() const noexcept
+  std::string_view block::get_data() const noexcept
   {
     return data;
   }

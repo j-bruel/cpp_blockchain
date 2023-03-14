@@ -5,52 +5,75 @@
 namespace centor
 {
 
+  static constexpr auto block_data_1 = "block 1 data";
+  static constexpr auto block_data_2 = "block 2 data";
+
   TEST(BlockchainTest, GenesisBlockIsAddedOnConstruction)
   {
-    blockchain b;
+    const blockchain simple_blockchain;
+    const auto last_block = simple_blockchain.get_last_block();
 
-    EXPECT_EQ(b.get_last_block()->get_data(), "Genesis Block");// check that the genesis block is added on construction
+    if (!last_block)
+      FAIL() << "Last block not found.";
+    EXPECT_EQ(last_block->get_data(),
+              "Genesis Block");// check that the genesis block is added on construction
   }
 
   TEST(BlockchainTest, BlocksAreAddedSequentially)
   {
-    blockchain b;
+    blockchain simple_blockchain;
 
-    b.add_block(1, "block 1 data");
-    b.add_block(2, "block 2 data");
-    EXPECT_EQ(b.get_last_block()->get_data(), "block 2 data");// check that blocks are added sequentially
+    simple_blockchain.add_block(1, block_data_1);
+    simple_blockchain.add_block(2, block_data_2);
+
+    const auto last_block = simple_blockchain.get_last_block();
+
+    if (!last_block)
+      FAIL() << "Last block not found.";
+    EXPECT_EQ(last_block->get_data(),
+              block_data_2);// check that blocks are added sequentially
   }
 
   TEST(BlockchainTest, GetParentBlockReturnsParentBlock)
   {
-    blockchain b;
+    blockchain simple_blockchain;
 
-    b.add_block(1, "block 1 data");
-    b.add_block(2, "block 2 data");
+    simple_blockchain.add_block(1, block_data_1);
+    simple_blockchain.add_block(2, block_data_2);
 
-    const auto last_block = b.get_last_block();
-    const auto parent_block = b.get_parent_block(*last_block);
+    const auto last_block = simple_blockchain.get_last_block();
+    const auto parent_block = simple_blockchain.get_parent_block(*last_block);
 
-    EXPECT_EQ(parent_block->get_data(), "block 1 data");// check that get_parent_block() returns the parent block
+    if (!last_block)
+      FAIL() << "Last block not found.";
+    if (!parent_block)
+      FAIL() << "Parent block not found.";
+    EXPECT_EQ(parent_block->get_data(), block_data_1);// check that get_parent_block() returns the parent block
   }
 
   TEST(BlockchainTest, GetBlockByHashReturnsBlock)
   {
-    blockchain b;
+    blockchain simple_blockchain;
 
-    b.add_block(1, "block 1 data");
+    simple_blockchain.add_block(1, block_data_1);
 
-    const auto block = b.get_last_block();
-    const auto searched_block = b.get_block_by_hash(block->get_hash());
+    const auto last_block = simple_blockchain.get_last_block();
 
-    EXPECT_EQ(searched_block->get_data(), block->get_data());
-    EXPECT_EQ(searched_block->get_data(), "block 1 data");// check that get_block_by_hash() returns the correct block
+    if (!last_block)
+      FAIL() << "Last block not found.";
+
+    const auto searched_block = simple_blockchain.get_block_by_hash(last_block->get_hash());
+
+    if (!searched_block)
+      FAIL() << "Searched block (== last block) not found.";
+    EXPECT_EQ(searched_block->get_data(), last_block->get_data());
+    EXPECT_EQ(searched_block->get_data(), block_data_1);// check that get_block_by_hash() returns the correct block
   }
 
   TEST(BlockchainTest, GetBlockByHashReturnsNullOptionalWhenNotFound)
   {
-    blockchain b;
-    const auto searched_block = b.get_block_by_hash("nonexistent hash");
+    const blockchain simple_blockchain;
+    const auto searched_block = simple_blockchain.get_block_by_hash("nonexistent hash");
 
     EXPECT_FALSE(
       searched_block.has_value());// check that get_block_by_hash() returns a null optional when the block is not found

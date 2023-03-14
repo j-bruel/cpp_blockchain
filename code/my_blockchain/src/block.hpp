@@ -2,6 +2,7 @@
 
 #include <ctime>
 #include <string>
+#include <string_view>
 
 namespace centor
 {
@@ -9,12 +10,12 @@ namespace centor
   class block final
   {
   public:
-    explicit block(std::uint32_t index, const std::string &data) noexcept;
+    explicit block(std::uint32_t index, std::string_view data) noexcept;
 
     // @param difficulty Leading zeros (or prefix zeros) of the hash determining the difficulty of mining this new block.
     void self_mine_hash_block(std::uint32_t difficulty) noexcept;
     void link_parent_block(const block &parent_block) noexcept;
-    [[nodiscard]] std::string get_data() const noexcept;
+    [[nodiscard]] std::string_view get_data() const noexcept;
     [[nodiscard]] std::string get_hash() const noexcept;
     [[nodiscard]] std::string get_parent_hash() const noexcept;
 
@@ -24,7 +25,7 @@ namespace centor
 
     std::uint32_t index;
     std::uint32_t nonce{0};// number used once
-    std::string data;
+    std::string_view data;
     std::string hash;
     std::string parent_hash;
     std::time_t time{std::time(nullptr)};
