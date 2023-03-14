@@ -11,8 +11,8 @@
 namespace centor
 {
 
-  block::block(std::uint32_t block_index, std::string_view block_data) noexcept :
-    index(block_index), data(std::move(block_data))
+  block::block(std::uint32_t block_index, const std::string_view &block_data) noexcept :
+    index(block_index), data(block_data)
   {
   }
 

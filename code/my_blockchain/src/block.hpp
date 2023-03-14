@@ -10,7 +10,7 @@ namespace centor
   class block final
   {
   public:
-    explicit block(std::uint32_t index, std::string_view data) noexcept;
+    explicit block(std::uint32_t index, const std::string_view &block_data) noexcept;
 
     // @param difficulty Leading zeros (or prefix zeros) of the hash determining the difficulty of mining this new block.
     void self_mine_hash_block(std::uint32_t difficulty) noexcept;
