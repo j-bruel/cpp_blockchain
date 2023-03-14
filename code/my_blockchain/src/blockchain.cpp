@@ -1,4 +1,5 @@
 #include "blockchain.hpp"
+
 #include "blockchain_handling_exception.hpp"
 
 #include <iostream>
@@ -32,6 +33,22 @@ namespace centor
     if (chain.empty())
       return std::nullopt;
     return chain.back();
+  }
+
+  std::optional<block> blockchain::get_parent_block(const block &child_block) const noexcept
+  {
+    if (chain.empty())
+      return std::nullopt;
+    return get_block_by_hash(child_block.get_parent_hash());
+  }
+
+  std::optional<block> blockchain::get_block_by_hash(const std::string &hash) const noexcept
+  {
+    const auto search_result = std::ranges::find_if(chain, [&hash](const auto &block_in_chain) { return hash == block_in_chain.get_hash(); });
+
+    if (search_result == chain.end())
+      return std::nullopt;
+    return *search_result;
   }
 
 }

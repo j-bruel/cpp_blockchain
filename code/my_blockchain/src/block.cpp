@@ -26,14 +26,24 @@ namespace centor
     hash = tmp_hash;
   }
 
+  void block::link_parent_block(const block &parent_block) noexcept
+  {
+    parent_hash = parent_block.hash;
+  }
+
+  std::string block::get_data() const noexcept
+  {
+    return data;
+  }
+
   std::string block::get_hash() const noexcept
   {
     return hash;
   }
 
-  void block::link_parent_block(const block &parent_block) noexcept
+  std::string block::get_parent_hash() const noexcept
   {
-    parent_hash = parent_block.hash;
+    return parent_hash;
   }
 
   static const std::string &

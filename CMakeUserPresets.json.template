@@ -12,7 +12,8 @@
       "inherits": "windows-msvc-debug-default",
       "displayName": "MSVC Debug",
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": true
+        "ENABLE_CLANG_TIDY": true,
+        "ENABLE_TESTING": true
       }
     },
     {
@@ -21,7 +22,8 @@
       "inherits": "windows-msvc-release-default",
       "displayName": "MSVC Release",
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": true
+        "ENABLE_CLANG_TIDY": true,
+        "ENABLE_TESTING": true
       }
     }
   ]

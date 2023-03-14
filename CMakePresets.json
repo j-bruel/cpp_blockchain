@@ -14,7 +14,8 @@
       "binaryDir": "${sourceDir}/out/${presetName}",
       "installDir": "${sourceDir}/out/${presetName}/install",
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": false
+        "ENABLE_CLANG_TIDY": false,
+        "ENABLE_TESTING": false
       }
     },
     {
