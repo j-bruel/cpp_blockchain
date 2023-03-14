@@ -3,7 +3,6 @@
 #include <chrono>
 #include <fmt/format.h>
 #include <future>
-#include <iostream>
 #include <spdlog/spdlog.h>
 
 int main()
