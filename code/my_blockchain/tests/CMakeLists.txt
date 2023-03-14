@@ -10,10 +10,9 @@ include(GoogleTest)
 add_executable(${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME} PRIVATE	"src/block_tests.cpp"
-										"src/blockchain_tests.cpp"
-										${MY_BLOCKCHAIN_CPP_SOURCES})
-target_include_directories(${PROJECT_NAME} PRIVATE "src" ${MY_BLOCKCHAIN_INCLUDE_DIRECTORY})
-target_link_libraries(${PROJECT_NAME} PRIVATE GTest::gtest GTest::gtest_main fmt::fmt cryptopp::cryptopp spdlog::spdlog)
+										"src/blockchain_tests.cpp")
+target_include_directories(${PROJECT_NAME} PRIVATE "src" ${MY_BLOCKCHAIN_PUBLIC_DIRECTORY} ${TMP_OUTPUT_DIRECTORY})
+target_link_libraries(${PROJECT_NAME} PRIVATE GTest::gtest GTest::gtest_main ${PARENT_PROJECT})
 if(UNIX) # needed by google test
 	target_link_libraries(${PROJECT_NAME} PRIVATE "-lpthread")
 endif(UNIX)

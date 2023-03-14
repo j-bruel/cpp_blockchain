@@ -1,6 +1,7 @@
 #pragma once
 
 #include "block.hpp"
+#include "my_blockchain_export.hpp"
 
 #include <optional>
 #include <vector>
@@ -8,7 +9,7 @@
 namespace centor
 {
 
-  class blockchain final
+  class MY_BLOCKCHAIN_EXPORT blockchain final
   {
   public:
     blockchain() noexcept;

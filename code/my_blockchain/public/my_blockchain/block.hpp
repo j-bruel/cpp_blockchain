@@ -1,12 +1,14 @@
 #pragma once
 
+#include "my_blockchain_export.hpp"
+
 #include <ctime>
 #include <string>
 
 namespace centor
 {
 
-  class block final
+  class MY_BLOCKCHAIN_EXPORT block final
   {
   public:
     explicit block(std::uint32_t index, const std::string &block_data) noexcept;
