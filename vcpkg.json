@@ -6,6 +6,7 @@
 		"fmt",
 		"cryptopp",
 		"spdlog",
+		"cpp-httplib",
 		"gtest"
 	]
 }
