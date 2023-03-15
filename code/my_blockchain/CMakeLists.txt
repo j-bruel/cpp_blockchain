@@ -4,8 +4,8 @@ find_package(fmt REQUIRED)
 find_package(cryptopp CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 
-set(MY_BLOCKCHAIN_CPP_SOURCES	"${CMAKE_CURRENT_SOURCE_DIR}/src/block.cpp"
-								"${CMAKE_CURRENT_SOURCE_DIR}/src/blockchain.cpp")
+set(MY_BLOCKCHAIN_CPP_SOURCES	"src/centor/block.cpp"
+								"src/centor/blockchain.cpp")
 set(MY_BLOCKCHAIN_INCLUDE_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(MY_BLOCKCHAIN_PUBLIC_DIRECTORY "${PROJECT_SOURCE_DIR}/public")
 
