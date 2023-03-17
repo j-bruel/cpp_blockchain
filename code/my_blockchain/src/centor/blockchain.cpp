@@ -10,8 +10,9 @@ namespace centor
 
   static constexpr auto leading_zeros = 4;
 
-  blockchain::blockchain() noexcept : difficulty(leading_zeros)
+  blockchain::blockchain() noexcept : mtx(), difficulty(leading_zeros)
   {
+    std::lock_guard<std::mutex> lock(mtx);
     auto genesis_block = block(0, "Genesis Block");
 
     genesis_block.self_mine_hash_block(difficulty);
@@ -26,6 +27,7 @@ namespace centor
 
   void blockchain::add_block(std::uint32_t block_index, const std::string &block_data)
   {
+    std::lock_guard<std::mutex> lock(mtx);
     const auto last_block = get_last_block();
     auto new_block = block(block_index, block_data);
 

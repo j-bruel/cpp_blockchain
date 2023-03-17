@@ -6,6 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <optional>
 #include <vector>
+#include <mutex>
 
 namespace centor
 {
@@ -23,6 +24,7 @@ namespace centor
     [[nodiscard]] std::optional<block> get_block_by_hash(const std::string &hash) const noexcept;
 
   private:
+    std::mutex mtx;
     std::uint32_t difficulty;
     std::vector<block> chain;
   };
