@@ -3,6 +3,7 @@
 #include "my_blockchain_export.hpp"
 
 #include <ctime>
+#include <nlohmann/json.hpp>
 #include <string>
 
 namespace centor
@@ -19,6 +20,7 @@ namespace centor
     [[nodiscard]] std::string get_data() const noexcept;
     [[nodiscard]] std::string get_hash() const noexcept;
     [[nodiscard]] std::string get_parent_hash() const noexcept;
+    void to_json(nlohmann::json &json) const;
 
   private:
     [[nodiscard]] std::string compute_hash() const noexcept;
@@ -31,5 +33,7 @@ namespace centor
     std::string parent_hash;
     std::time_t time{std::time(nullptr)};
   };
+
+  MY_BLOCKCHAIN_EXPORT void to_json(nlohmann::json &json, const block &to_serialize);
 
 }

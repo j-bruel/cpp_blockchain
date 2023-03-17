@@ -11,8 +11,7 @@
 namespace centor
 {
 
-  block::block(std::uint32_t block_index, const std::string &block_data) noexcept :
-    index(block_index), data(block_data)
+  block::block(std::uint32_t block_index, const std::string &block_data) noexcept : index(block_index), data(block_data)
   {
   }
 
@@ -49,6 +48,12 @@ namespace centor
     return parent_hash;
   }
 
+  void block::to_json(nlohmann::json &json) const
+  {
+    json = {{"index", index}, {"nonce", nonce}, {"data", data}, {"hash", hash}, {"parent_hash", parent_hash},
+            {"time", time}};
+  }
+
   static const std::string &
   convert_hash_to_hex_string(std::string &hash, const std::array<CryptoPP::byte, CryptoPP::SHA256::DIGESTSIZE> &digest)
   {
@@ -74,6 +79,11 @@ namespace centor
   std::string block::generate_clear_hash() const noexcept
   {
     return fmt::format("{}{}{}{}{}", index, time, data, nonce, parent_hash);
+  }
+
+  void to_json(nlohmann::json &json, const block &to_serialize)
+  {
+    to_serialize.to_json(json);
   }
 
 }

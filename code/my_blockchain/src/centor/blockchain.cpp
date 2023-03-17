@@ -15,6 +15,11 @@ namespace centor
     chain.emplace_back(0, "Genesis Block");
   }
 
+  void blockchain::to_json(nlohmann::json &json) const
+  {
+    json = chain;
+  }
+
   void blockchain::add_block(std::uint32_t block_index, const std::string &block_data)
   {
     const auto last_block = get_last_block();
@@ -54,7 +59,7 @@ namespace centor
 
   void to_json(nlohmann::json &json, const blockchain &to_serialize)
   {
-    json = {{"name", "titi"}, {"age", 20}};
+    to_serialize.to_json(json);
   }
 
 }

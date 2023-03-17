@@ -18,9 +18,11 @@ namespace srv
 
   void listener::setup_endpoint(const centor::blockchain &blockchain)
   {
+    constexpr auto beautify_json_dump = 4;
+
     http_server.Get("/blockchain",
                     [&blockchain](const auto &, httplib::Response &res)
-                    { res.set_content(nlohmann::json(blockchain).dump(), "application/json"); });
+                    { res.set_content(nlohmann::json(blockchain).dump(beautify_json_dump), "application/json"); });
   }
 
 }
