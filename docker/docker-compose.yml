@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+    devenv:
+        profiles:
+            - devenv
+        build:
+            target: devenv
+            context: ..
+            dockerfile: ./docker/Dockerfile
+            args:
+                CENTOR_GITHUB_TOKEN: ${CENTOR_GITHUB_TOKEN:?Set env variable with your Github personal access token}
+        ports:
+            - "5000:22"
+            - "8080:8080"
+        cap_add:
+            - SYS_PTRACE # allows to attach debugger https://github.com/Microsoft/MIEngine/wiki/Troubleshoot-attaching-to-processes-using-GDB#docker-containers
+        stdin_open: true
+        tty: true
+        volumes:
+            - centor_user_home:/home/centor
+    test:
+        profiles:
+            - test
+        build:
+            target: test
+            context: ..
+            dockerfile: ./docker/Dockerfile
+            args:
+                CENTOR_GITHUB_TOKEN: ${CENTOR_GITHUB_TOKEN:?Set env variable with your Github personal access token}
+    production:
+        image: centor.cpp_blockchain.backend:temporary
+        profiles:
+            - production
+        build:
+            context: ..
+            dockerfile: ./docker/Dockerfile
+            args:
+                CENTOR_GITHUB_TOKEN: ${CENTOR_GITHUB_TOKEN:?Set env variable with your Github personal access token}
+volumes:
+  centor_user_home:
