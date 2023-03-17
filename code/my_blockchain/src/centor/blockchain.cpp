@@ -12,7 +12,11 @@ namespace centor
 
   blockchain::blockchain() noexcept : difficulty(leading_zeros)
   {
-    chain.emplace_back(0, "Genesis Block");
+    auto genesis_block = block(0, "Genesis Block");
+
+    genesis_block.self_mine_hash_block(difficulty);
+    chain.emplace_back(genesis_block);
+    spdlog::info("Genesis block inserted {}!", genesis_block.get_hash());
   }
 
   void blockchain::to_json(nlohmann::json &json) const
