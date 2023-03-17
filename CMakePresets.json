@@ -42,6 +42,31 @@
       }
     },
     {
+      "name": "unix-common",
+      "description": "Unix-like OS settings for gcc and clang toolchains",
+      "hidden": true,
+      "inherits": "common",
+      "condition": {
+        "type": "inList",
+        "string": "${hostSystemName}",
+        "list": [
+          "Linux",
+          "Darwin"
+        ]
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+          "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+        }
+      },
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": {
+          "type": "FILEPATH",
+          "value": "$env{HOME}\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
+        }
+      }
+    },
+    {
       "name": "windows-msvc-debug-default",
       "description": "Target Windows with the msvc compiler, debug build type",
       "inherits": "windows-common",
@@ -56,6 +81,28 @@
       "inherits": "windows-common",
       "hidden": true,
       "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+      }
+    },
+    {
+      "name": "linux-gcc-debug-default",
+      "description": "Target Unix-like OS with the gcc compiler, debug build type",
+      "inherits": "unix-common",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "linux-gcc-release-default",
+      "description": "Target Unix-like OS with the gcc compiler, release build type",
+      "inherits": "unix-common",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_BUILD_TYPE": "RelWithDebInfo"
       }
     }
