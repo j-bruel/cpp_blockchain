@@ -1,5 +1,7 @@
 #pragma once
 
+#include <centor/blockchain.hpp>
+
 #include <string>
 #include <httplib.h>
 
@@ -10,12 +12,12 @@ namespace srv
   {
   public:
     listener() = delete;
-    explicit listener(const std::string &listening_addr, int listening_port);
+    explicit listener(const centor::blockchain &blockchain, const std::string &listening_addr, int listening_port);
 
     void listen();
 
   private:
-    void setup_endpoint();
+    void setup_endpoint(const centor::blockchain &blockchain);
 
     std::string addr;
     int port;

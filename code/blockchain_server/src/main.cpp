@@ -4,10 +4,8 @@
 #include <spdlog/spdlog.h>
 #include <thread>
 
-void mining_main()
+static void mining_main(centor::blockchain &blockchain)
 {
-  centor::blockchain blockchain;
-
   spdlog::info("Mining while is starting.");
   for (int block_number = 1; true; ++block_number)
     blockchain.add_block(block_number, fmt::format("Block number {}.", block_number));
@@ -15,8 +13,9 @@ void mining_main()
 
 int main()
 {
-  srv::listener http_server_listener("localhost", 4242);
-  std::jthread mining_thread(&mining_main);
+  centor::blockchain blockchain;
+  srv::listener http_server_listener(blockchain, "localhost", 4242);
+  std::jthread mining_thread(&mining_main, std::ref(blockchain));
 
   spdlog::info("Running HTTP server");
   http_server_listener.listen();

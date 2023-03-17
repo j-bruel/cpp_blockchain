@@ -44,11 +44,17 @@ namespace centor
 
   std::optional<block> blockchain::get_block_by_hash(const std::string &hash) const noexcept
   {
-    const auto search_result = std::ranges::find_if(chain, [&hash](const auto &block_in_chain) { return hash == block_in_chain.get_hash(); });
+    const auto search_result =
+      std::ranges::find_if(chain, [&hash](const auto &block_in_chain) { return hash == block_in_chain.get_hash(); });
 
     if (search_result == chain.end())
       return std::nullopt;
     return *search_result;
+  }
+
+  void to_json(nlohmann::json &json, const blockchain &to_serialize)
+  {
+    json = {{"name", "titi"}, {"age", 20}};
   }
 
 }
