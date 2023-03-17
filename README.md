@@ -23,8 +23,16 @@ Inside this repository, you will found:
 - Clone [VCPKG repo](https://github.com/microsoft/vcpkg.git) in your main development directory. You put it somewhere else, just consider to update the CMakePresets variable correctly.
 
 ### Prerequisites for Linux build target (Linux-GCC-Debug or Linux-GCC-Release configuration)
+- Visual Studio 2022 with C++ Desktop development module and [Linux development tools for Visual Studio](https://docs.microsoft.com/en-us/cpp/linux/download-install-and-setup-the-linux-development-workload) installed
+- [Docker](https://docs.docker.com/desktop/windows/) installed
+- Make sure that you [use Linux containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers)
 
-... Later on ...
+Go to [docker](https://github.com/j-bruel/cpp_blockchain/blob/master/docker) folder and run `docker compose --profile devenv up -d` then [set up the remote connection from Visual Studio](https://devblogs.microsoft.com/cppblog/build-c-applications-in-a-linux-docker-container-with-visual-studio/#connect-to-your-docker-container-from-visual-studio) using this configuration:
+- Host name: **localhost**
+- Port: **5000**
+- User name: **centor**
+- Authentication type: **Password**
+- Password: **centor**
 
 ### Prerequisites for MacOS build target
 
