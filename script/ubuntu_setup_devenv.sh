@@ -3,22 +3,24 @@
 apt update -y
 apt upgrade -y
 apt remove -y gpg
+
 # install current script tools
 apt install -y gnupg1 apt-transport-https ca-certificates software-properties-common wget curl git
-# add microsoft SQL server driver v17 entry in local apt repo (specific for unbuntu 20.04)
+
+# add microsoft SQL server driver v18 entry in local apt repo (specific for unbuntu 22.04)
 su -c '
 curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list > /etc/apt/sources.list.d/mssql-release.list
 '
+
 # add kitware cmake repo
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+apt-add-repository 'deb https://apt.kitware.com/ubuntu/ jammy main'
 apt update -y
 apt install -y kitware-archive-keyring
 rm /etc/apt/trusted.gpg.d/kitware.gpg
 
 # install compiling tools
-apt install curl zip unzip tar
 apt install -y zip unzip tar gdb pkg-config cmake
 apt install -y build-essential software-properties-common
 apt install -y ninja-build 
@@ -49,6 +51,3 @@ apt install -y mono-devel
 git config --global credential.helper store
 # install language pack for support of std::locale utf8
 apt install -y language-pack-en
-
-# install additional tools
-apt install -y zip

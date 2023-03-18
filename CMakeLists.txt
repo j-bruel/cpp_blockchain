@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.24)
-
+#@todo cmake upgrade to 3.26 if possible and presets also
+# Test install rule on linux
+# Add flags for linux & windows cmake file
+#impossible to reach the server, check open ports ...
 project(cpp_blockchain)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/") # use include("name") not include("name.cmake") on cmake directory
 set(CMAKE_INSTALL_RPATH "$ORIGIN") # keep path of shared dependencies after install on Linux
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/") # use include("name") not include("name.cmake") on cmake directory
 
 if (ENABLE_CLANG_TIDY)
 	set(CMAKE_CXX_CLANG_TIDY clang-tidy)
