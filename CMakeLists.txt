@@ -1,8 +1,11 @@
-cmake_minimum_required(VERSION 3.24)
-#@todo cmake upgrade to 3.26 if possible and presets also
+cmake_minimum_required(VERSION 3.25)
+
 # Test install rule on linux
 # Add flags for linux & windows cmake file
 #impossible to reach the server, check open ports ...
+# Add build script to make test & propduction work
+# Update readme.md
+
 project(cpp_blockchain)
 
 set(CMAKE_INSTALL_RPATH "$ORIGIN") # keep path of shared dependencies after install on Linux
