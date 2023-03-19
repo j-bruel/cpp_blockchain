@@ -13,8 +13,8 @@ static void mining_main(centor::blockchain &blockchain)
 
 int main()
 {
-  constexpr auto server_addr = "localhost";
-  constexpr auto server_port = 8080;
+  constexpr auto server_addr = "127.0.0.1";
+  constexpr auto server_port = 8000;
   centor::blockchain blockchain;
   srv::listener http_server_listener(blockchain, server_addr, server_port);
   const std::jthread mining_thread(&mining_main, std::ref(blockchain));

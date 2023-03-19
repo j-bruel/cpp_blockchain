@@ -11,7 +11,7 @@ services:
                 CENTOR_GITHUB_TOKEN: ${CENTOR_GITHUB_TOKEN:?Set env variable with your Github personal access token}
         ports:
             - "5000:22"
-            - "8080:8080"
+            - "8000:8000"
         cap_add:
             - SYS_PTRACE # allows to attach debugger https://github.com/Microsoft/MIEngine/wiki/Troubleshoot-attaching-to-processes-using-GDB#docker-containers
         stdin_open: true
