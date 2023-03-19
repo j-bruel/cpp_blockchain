@@ -37,7 +37,7 @@
         "CMAKE_CXX_COMPILER": "cl",
         "CMAKE_TOOLCHAIN_FILE": {
           "type": "FILEPATH",
-          "value": "${sourceDir}\\..\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
+          "value": "${sourceDir}/../vcpkg/scripts/buildsystems/vcpkg.cmake"
         }
       }
     },
@@ -62,8 +62,18 @@
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": {
           "type": "FILEPATH",
-          "value": "$env{HOME}\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake"
+          "value": "$env{HOME}/vcpkg/scripts/buildsystems/vcpkg.cmake"
         }
+      }
+    },
+    {
+      "name": "gcc-unix-common",
+      "description": "Unix-like OS settings for gcc toolchains",
+      "hidden": true,
+      "inherits": "unix-common",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
       }
     },
     {
@@ -87,22 +97,18 @@
     {
       "name": "linux-gcc-debug-default",
       "description": "Target Unix-like OS with the gcc compiler, debug build type",
-      "inherits": "unix-common",
+      "inherits": "gcc-unix-common",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
       "name": "linux-gcc-release-default",
       "description": "Target Unix-like OS with the gcc compiler, release build type",
-      "inherits": "unix-common",
+      "inherits": "gcc-unix-common",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_BUILD_TYPE": "RelWithDebInfo"
       }
     }
