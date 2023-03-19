@@ -20,7 +20,7 @@ Inside this repository, you will found:
 
 ### Prerequisites for Windows build target (Debug or Release configuration)
 - Visual Studio 2022 with C++ Desktop development module installed
-- Clone [VCPKG repo](https://github.com/microsoft/vcpkg.git) in your main development directory. You put it somewhere else, just consider to update the CMakePresets variable correctly.
+- Clone [VCPKG repo](https://github.com/microsoft/vcpkg.git) in your main development directory (<project_dir>/..) on windows and your HOME directory on linux. You put it somewhere else, just consider to update the CMakePresets variable correctly.
 
 ### Prerequisites for Linux build target (Linux-GCC-Debug or Linux-GCC-Release configuration)
 - Visual Studio 2022 with C++ Desktop development module and [Linux development tools for Visual Studio](https://docs.microsoft.com/en-us/cpp/linux/download-install-and-setup-the-linux-development-workload) installed
