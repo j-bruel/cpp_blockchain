@@ -63,21 +63,17 @@ COPY --chown=$CENTOR_USER . $CENTOR_HOME/cpp_blockchain
 
 ENV ENABLE_TESTING="ON"
 
-WORKDIR $CENTOR_HOME/cpp_blockchain/script
-RUN chmod +x ./buildlinux.sh
-RUN ./buildlinux.sh
+WORKDIR $CENTOR_HOME/cpp_blockchain
+RUN cmake --preset linux-gcc-release
+RUN cmake --build ./out/linux-gcc-release
 
 FROM build AS test
 
 ARG CENTOR_USER=centor
 ARG CENTOR_HOME=/home/$CENTOR_USER
 
-# make tests scripts executable
-USER root
-RUN chmod +x $CENTOR_HOME/cpp_blockchain/script/docker/run_tests.sh
-
 ENV CENTOR_HOME=$CENTOR_HOME
-ENTRYPOINT $CENTOR_HOME/cpp_blockchain/script/docker/run_tests.sh
+ENTRYPOINT $CENTOR_HOME/cpp_blockchain/out/linux-gcc-release/runtime/tests_my_blockchain
 
 # This is the small final target 
 # that have to go in production
