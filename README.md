@@ -10,7 +10,7 @@ Inside this repository, you will found:
 
 ## Current state
 
-* Compiles with Windows Visual 2022/C++23
+* Compiles with Windows Visual 2022/C++23 and Linux/gcc12
 
 ## Prerequisites
 
@@ -51,9 +51,16 @@ Make sure that the part of the project you want to build are selectionned in the
 On Visual Studio the configure phase should start automatically when the project is opened, if you need to run it manually go to **Project > Configure cpp_blockchain**.
 Once the configure phase is finished, go to **Build > Install cpp_blockchain**
 
-### Build with script
+### Build with terminal
 
-... Later on ...
+On Windows open a 'x64 native tools command prompt for vs 2022' terminal.
+On linux open your favorite terminal with appropriated environment variables already set.
+
+```
+cmake --preset <preset_name>
+cmake --build out/<preset_name>
+```
+
 
 ## Debug
 
@@ -62,7 +69,9 @@ Once the configure phase is finished, go to **Build > Install cpp_blockchain**
 
 ### Debug with a terminal
 
-... Later on ...
+- Go inside the build directory <project_directory/out/<preset_name>/bin
+- run ./cpp_blockchain(.exe)
+
 
 ## Test
 The **ENABLE_TESTING** variable must be set in the CMakeUserPresets to have the tests included in the project build and be able to see them in Visual Studio interface.
