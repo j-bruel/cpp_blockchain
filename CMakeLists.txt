@@ -1,10 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 
-# Test install rule on linux
-# Add flags for linux & windows cmake file
 #impossible to reach the server, check open ports ...
 # Add build script to make test & propduction work
-# Update readme.md
 
 project(cpp_blockchain)
 
