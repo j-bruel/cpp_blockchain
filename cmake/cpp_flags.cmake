@@ -2,6 +2,7 @@
 
 macro (cpp_flags cpp_target)
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+		target_compile_options(${cpp_target} PRIVATE -Xclang -fcxx-exceptions) # Enable exceptions
 		target_compile_options(${cpp_target} PRIVATE -Wall -Wextra) # reasonable and standard
 		target_compile_options(${cpp_target} PRIVATE -Wshadow) # warn the user if a variable declaration shadows one from a parent context
 		target_compile_options(${cpp_target} PRIVATE -Wnon-virtual-dtor) # warn the user if a class with virtual functions has a non-virtual destructor. This helps catch hard to track down memory errors
