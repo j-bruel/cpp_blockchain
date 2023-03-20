@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
 
-#impossible to reach the server, check open ports ...
 # Add build script to make test & propduction work
 
 project(cpp_blockchain)
