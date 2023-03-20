@@ -1,7 +1,5 @@
 project(blockchain_server)
 
-include(cpp_flags)
-
 find_package(fmt REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(httplib CONFIG REQUIRED)

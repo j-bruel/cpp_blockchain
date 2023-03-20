@@ -14,6 +14,7 @@ add_library(${PROJECT_NAME} SHARED)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "") # Disable CMake auto add "lib" prefix on Linux
 set_target_properties(${PROJECT_NAME} PROPERTIES POSITION_INDEPENDENT_CODE 1) # shared libraries need PIC force it to static too we don't care of the very small overhead on full static version
+cpp_flags(${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME} PRIVATE ${MY_BLOCKCHAIN_CPP_SOURCES})
 target_include_directories(${PROJECT_NAME}	PRIVATE

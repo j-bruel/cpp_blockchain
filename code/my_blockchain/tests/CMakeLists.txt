@@ -9,6 +9,8 @@ include(GoogleTest)
 
 add_executable(${PROJECT_NAME})
 
+cpp_flags(${PROJECT_NAME})
+
 target_sources(${PROJECT_NAME} PRIVATE	"src/block_tests.cpp"
 										"src/blockchain_tests.cpp")
 target_include_directories(${PROJECT_NAME} PRIVATE "src" ${MY_BLOCKCHAIN_PUBLIC_DIRECTORY} ${TMP_OUTPUT_DIRECTORY})
