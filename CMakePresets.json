@@ -73,7 +73,7 @@
       "inherits": "unix-common",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_CXX_COMPILER": "g++"
       }
     },
     {
