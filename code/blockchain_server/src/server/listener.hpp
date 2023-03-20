@@ -1,9 +1,8 @@
 #pragma once
 
 #include <centor/blockchain.hpp>
-
-#include <string>
 #include <httplib.h>
+#include <string>
 
 namespace srv
 {
