@@ -12,7 +12,6 @@
       "inherits": [ "platform-windows", "compiler-mvc", "build-configuration-debug" ],
       "displayName": "MVC Debug",
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": false,
         "ENABLE_TESTING": true
       }
     },
@@ -22,7 +21,6 @@
       "inherits": [ "platform-windows", "compiler-mvc", "build-configuration-release" ],
       "displayName": "MVC Release",
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": false,
         "ENABLE_TESTING": true
       }
     },
@@ -32,7 +30,7 @@
       "inherits": [ "platform-windows", "compiler-clang-mvc", "build-configuration-debug" ],
       "displayName": "Clang MVC Debug",
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": false,
+        "ENABLE_CLANG_TIDY": true,
         "ENABLE_TESTING": true
       }
     },
@@ -52,7 +50,6 @@
       "description": "Target Unix-like OS with the gcc compiler, debug build type",
       "inherits": [ "platfrom-unix-like", "compiler-gcc", "build-configuration-debug" ],
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": false,
         "ENABLE_TESTING": true
       }
     },
@@ -62,7 +59,6 @@
       "description": "Target Unix-like OS with the gcc compiler, release build type",
       "inherits": [ "platfrom-unix-like", "compiler-gcc", "build-configuration-release" ],
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": false,
         "ENABLE_TESTING": true
       }
     }
