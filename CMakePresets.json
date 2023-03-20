@@ -7,7 +7,7 @@
   },
   "configurePresets": [
     {
-      "name": "common",
+      "name": "general-configuration",
       "description": "General settings that apply to all configurations",
       "hidden": true,
       "generator": "Ninja",
@@ -19,9 +19,43 @@
       }
     },
     {
-      "name": "windows-common",
+      "name": "compiler-gcc",
+      "description": "GCC settings",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++"
+      }
+    },
+    {
+      "name": "compiler-msvc",
+      "description": "MSVC settings",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl",
+        "CMAKE_CXX_COMPILER": "cl"
+      }
+    },
+    {
+      "name": "build-configuration-debug",
+      "description": "Set build configuration to debug",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "build-configuration-release",
+      "description": "Set build configuration to release",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+      }
+    },
+    {
+      "name": "platform-windows",
       "description": "Windows settings for MSBuild toolchain that apply to msvc and clang",
-      "inherits": "common",
+      "inherits": "general-configuration",
       "hidden": true,
       "condition": {
         "type": "equals",
@@ -33,8 +67,6 @@
         "strategy": "external"
       },
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "cl",
-        "CMAKE_CXX_COMPILER": "cl",
         "CMAKE_TOOLCHAIN_FILE": {
           "type": "FILEPATH",
           "value": "${sourceDir}/../vcpkg/scripts/buildsystems/vcpkg.cmake"
@@ -42,10 +74,10 @@
       }
     },
     {
-      "name": "unix-common",
+      "name": "platfrom-unix-like",
       "description": "Unix-like OS settings for gcc and clang toolchains",
       "hidden": true,
-      "inherits": "common",
+      "inherits": "general-configuration",
       "condition": {
         "type": "inList",
         "string": "${hostSystemName}",
@@ -64,52 +96,6 @@
           "type": "FILEPATH",
           "value": "$env{HOME}/vcpkg/scripts/buildsystems/vcpkg.cmake"
         }
-      }
-    },
-    {
-      "name": "gcc-unix-common",
-      "description": "Unix-like OS settings for gcc toolchains",
-      "hidden": true,
-      "inherits": "unix-common",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++"
-      }
-    },
-    {
-      "name": "windows-msvc-debug-default",
-      "description": "Target Windows with the msvc compiler, debug build type",
-      "inherits": "windows-common",
-      "hidden": true,
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
-      }
-    },
-    {
-      "name": "windows-msvc-release-default",
-      "description": "Target Windows with the msvc compiler, release build type",
-      "inherits": "windows-common",
-      "hidden": true,
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
-      }
-    },
-    {
-      "name": "linux-gcc-debug-default",
-      "description": "Target Unix-like OS with the gcc compiler, debug build type",
-      "inherits": "gcc-unix-common",
-      "hidden": true,
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
-      }
-    },
-    {
-      "name": "linux-gcc-release-default",
-      "description": "Target Unix-like OS with the gcc compiler, release build type",
-      "inherits": "gcc-unix-common",
-      "hidden": true,
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
       }
     }
   ]

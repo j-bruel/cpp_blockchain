@@ -82,6 +82,7 @@ To run the tests, you can change the start-up item to "tests_my_blockchain.exe" 
 - To run dockerized tests (useful for CI pipeline) : **docker compose --profile test up --exit-code-from test**
 - To build production image : **docker compose --profile production build**
 - To run dockerized server : **docker compose --profile production up**
+- Remove all builded images forever : **docker system prune --all --volumes**
 
 ## Known issues
 

@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
 
-# Review presets systems with more sub-presets (gcc, release, debug ...)
-
 project(cpp_blockchain)
 
 set(CMAKE_INSTALL_RPATH "$ORIGIN") # keep path of shared dependencies after install on Linux
