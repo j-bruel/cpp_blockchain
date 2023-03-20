@@ -18,6 +18,7 @@ macro (cpp_flags cpp_target)
 		target_compile_options(${cpp_target} PRIVATE -Wimplicit-fallthrough) # Warns when case statements fall-through. (Included with -Wextra in GCC, not in clang)
 		target_compile_options(${cpp_target} PRIVATE -Wno-c++98-compat -Wno-c++98-compat-pedantic) # Disable c++98 compat warnings.
 		target_compile_options(${cpp_target} PRIVATE -Wno-missing-noreturn) # Disable warning on not specify 'noreturn' attribute.
+		target_compile_options(${cpp_target} PRIVATE -Wno-global-constructors) # Disable declaration requires a global constructor.
 	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_compile_options(${cpp_target} PRIVATE -pedantic) # Warn on language extensions
 		target_compile_options(${cpp_target} PRIVATE -Wall -Wextra) # reasonable and standard

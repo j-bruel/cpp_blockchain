@@ -15,7 +15,7 @@ namespace centor
   class MY_BLOCKCHAIN_EXPORT blockchain final
   {
   public:
-    blockchain() noexcept;
+    blockchain();
 
     void to_json(nlohmann::json &json) const;
 

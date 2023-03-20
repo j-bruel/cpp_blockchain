@@ -5,8 +5,8 @@
 namespace srv
 {
 
-  listener::listener(const centor::blockchain &blockchain, const std::string &listening_addr, int listening_port) :
-    addr(listening_addr), port(listening_port)
+  listener::listener(const centor::blockchain &blockchain, std::string listening_addr, int listening_port) :
+    addr(std::move(listening_addr)), port(listening_port)
   {
     setup_endpoint(blockchain);
   }
