@@ -2,6 +2,7 @@
 
 #include "my_blockchain_export.hpp"
 
+#include <centor/tools/warning_disabler.hpp>
 #include <ctime>
 #include <nlohmann/json.hpp>
 #include <string>
@@ -26,12 +27,17 @@ namespace centor
     [[nodiscard]] std::string compute_hash() const noexcept;
     [[nodiscard]] std::string generate_clear_hash() const noexcept;
 
+    DISABLE_WARNING_PUSH
+    DISABLE_WARNING_EXPORTED_DATA_MISMATCH
+
     std::uint32_t index;
     std::uint32_t nonce{0};// number used once
     std::string data;
     std::string hash;
     std::string parent_hash;
     std::time_t time{std::time(nullptr)};
+
+    DISABLE_WARNING_POP
   };
 
   MY_BLOCKCHAIN_EXPORT void to_json(nlohmann::json &json, const block &to_serialize);

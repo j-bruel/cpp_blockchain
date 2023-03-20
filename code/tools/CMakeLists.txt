@@ -1,0 +1,7 @@
+project(tools)
+
+set(MY_BLOCKCHAIN_PUBLIC_DIRECTORY "${PROJECT_SOURCE_DIR}/public")
+
+add_library(${PROJECT_NAME} INTERFACE)
+
+target_include_directories(${PROJECT_NAME} INTERFACE ${MY_BLOCKCHAIN_PUBLIC_DIRECTORY})
