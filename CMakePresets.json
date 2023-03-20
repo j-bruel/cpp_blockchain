@@ -28,12 +28,26 @@
       }
     },
     {
-      "name": "compiler-msvc",
-      "description": "MSVC settings",
+      "name": "compiler-mvc",
+      "description": "Microsoft Visual C++ Compiler settings",
       "hidden": true,
       "cacheVariables": {
         "CMAKE_C_COMPILER": "cl",
         "CMAKE_CXX_COMPILER": "cl"
+      }
+    },
+    {
+      "name": "compiler-clang-mvc",
+      "description": "MSVC settings",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "intelliSenseMode": "windows-clang-x64"
+        }
       }
     },
     {
@@ -54,7 +68,7 @@
     },
     {
       "name": "platform-windows",
-      "description": "Windows settings for MSBuild toolchain that apply to msvc and clang",
+      "description": "Windows settings for MSBuild toolchain that apply to mvc and clang",
       "inherits": "general-configuration",
       "hidden": true,
       "condition": {

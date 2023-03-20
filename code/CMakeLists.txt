@@ -1,2 +1,3 @@
+add_subdirectory(tools)
 add_subdirectory(my_blockchain)
 add_subdirectory(blockchain_server)

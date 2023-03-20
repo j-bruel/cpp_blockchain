@@ -11,11 +11,11 @@
 namespace centor
 {
 
-  block::block(std::uint32_t block_index, const std::string &block_data) noexcept : index(block_index), data(block_data)
+  block::block(std::uint32_t block_index, std::string block_data) noexcept : index(block_index), data(std::move(block_data))
   {
   }
 
-  void block::self_mine_hash_block(std::uint32_t difficulty) noexcept
+  void block::self_mine_hash_block(std::uint32_t difficulty)
   {
     const std::string hash_leading_zeros(difficulty, '0');
     std::string tmp_hash;
@@ -28,27 +28,27 @@ namespace centor
     hash = tmp_hash;
   }
 
-  void block::link_parent_block(const block &parent_block) noexcept
+  void block::link_parent_block(const block &parent_block)
   {
     parent_hash = parent_block.hash;
   }
 
-  std::string block::get_data() const noexcept
+  std::string block::get_data() const
   {
     return data;
   }
 
-  std::string block::get_hash() const noexcept
+  std::string block::get_hash() const
   {
     return hash;
   }
 
-  std::string block::get_parent_hash() const noexcept
+  std::string block::get_parent_hash() const
   {
     return parent_hash;
   }
 
-  void block::to_json(nlohmann::json &json) const
+  void block::to_json(nlohmann::json &json) const noexcept
   {
     json = {{"index", index}, {"nonce", nonce}, {"data", data}, {"hash", hash}, {"parent_hash", parent_hash},
             {"time", time}};
@@ -64,7 +64,7 @@ namespace centor
     return hash;
   }
 
-  std::string block::compute_hash() const noexcept
+  std::string block::compute_hash() const
   {
     std::array<CryptoPP::byte, CryptoPP::SHA256::DIGESTSIZE> digest{};
     const auto clear_hash = generate_clear_hash();
@@ -81,7 +81,7 @@ namespace centor
     return fmt::format("{}{}{}{}{}", index, time, data, nonce, parent_hash);
   }
 
-  void to_json(nlohmann::json &json, const block &to_serialize)
+  void to_json(nlohmann::json &json, const block &to_serialize) noexcept
   {
     to_serialize.to_json(json);
   }

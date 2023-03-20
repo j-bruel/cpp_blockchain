@@ -10,7 +10,7 @@ namespace centor
 
   static constexpr auto leading_zeros = 4;
 
-  blockchain::blockchain() noexcept : difficulty(leading_zeros)
+  blockchain::blockchain() : difficulty(leading_zeros)
   {
     const std::lock_guard<std::mutex> lock(mtx);
     auto genesis_block = block(0, "Genesis Block");

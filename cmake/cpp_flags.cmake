@@ -2,7 +2,7 @@
 
 macro (cpp_flags cpp_target)
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-		target_compile_options(${cpp_target} PRIVATE -pedantic) # Warn on language extensions
+		target_compile_options(${cpp_target} PRIVATE -Xclang -fcxx-exceptions) # Enable exceptions
 		target_compile_options(${cpp_target} PRIVATE -Wall -Wextra) # reasonable and standard
 		target_compile_options(${cpp_target} PRIVATE -Wshadow) # warn the user if a variable declaration shadows one from a parent context
 		target_compile_options(${cpp_target} PRIVATE -Wnon-virtual-dtor) # warn the user if a class with virtual functions has a non-virtual destructor. This helps catch hard to track down memory errors
@@ -14,9 +14,11 @@ macro (cpp_flags cpp_target)
 		target_compile_options(${cpp_target} PRIVATE -Wconversion) # warn on type conversions that may lose data
 		target_compile_options(${cpp_target} PRIVATE -Wsign-conversion) # (Clang all versions, GCC >= 4.3) warn on sign conversions
 		target_compile_options(${cpp_target} PRIVATE -Wdouble-promotion) # (GCC >= 4.6, Clang >= 3.8) warn if float is implicitly promoted to double
-		target_compile_options(${cpp_target} PRIVATE -Wlifetime) # (only special branch of Clang currently) shows object lifetime issues
 		target_compile_options(${cpp_target} PRIVATE -Wformat=2) # warn on security issues around functions that format output (i.e., printf)
 		target_compile_options(${cpp_target} PRIVATE -Wimplicit-fallthrough) # Warns when case statements fall-through. (Included with -Wextra in GCC, not in clang)
+		target_compile_options(${cpp_target} PRIVATE -Wno-c++98-compat -Wno-c++98-compat-pedantic) # Disable c++98 compat warnings.
+		target_compile_options(${cpp_target} PRIVATE -Wno-missing-noreturn) # Disable warning on not specify 'noreturn' attribute.
+		target_compile_options(${cpp_target} PRIVATE -Wno-global-constructors) # Disable declaration requires a global constructor.
 	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_compile_options(${cpp_target} PRIVATE -pedantic) # Warn on language extensions
 		target_compile_options(${cpp_target} PRIVATE -Wall -Wextra) # reasonable and standard

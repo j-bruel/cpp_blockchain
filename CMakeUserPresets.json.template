@@ -7,20 +7,38 @@
   },
   "configurePresets": [
     {
-      "name": "windows-msvc-debug",
-      "description": "Target Windows with the msvc compiler, debug build type and user configuration",
-      "inherits": [ "platform-windows", "compiler-msvc", "build-configuration-debug" ],
-      "displayName": "MSVC Debug",
+      "name": "windows-mvc-debug",
+      "description": "Target Windows with the mvc compiler, debug build type and user configuration",
+      "inherits": [ "platform-windows", "compiler-mvc", "build-configuration-debug" ],
+      "displayName": "MVC Debug",
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": false,
         "ENABLE_TESTING": true
       }
     },
     {
-      "name": "windows-msvc-release",
-      "description": "Target Windows with the msvc compiler, release build type and user configuration",
-      "inherits": [ "platform-windows", "compiler-msvc", "build-configuration-release" ],
-      "displayName": "MSVC Release",
+      "name": "windows-mvc-release",
+      "description": "Target Windows with the mvc compiler, release build type and user configuration",
+      "inherits": [ "platform-windows", "compiler-mvc", "build-configuration-release" ],
+      "displayName": "MVC Release",
+      "cacheVariables": {
+        "ENABLE_TESTING": true
+      }
+    },
+    {
+      "name": "windows-clang-debug",
+      "description": "Target Windows with the clang compiler, debug build type and user configuration",
+      "inherits": [ "platform-windows", "compiler-clang-mvc", "build-configuration-debug" ],
+      "displayName": "Clang MVC Debug",
+      "cacheVariables": {
+        "ENABLE_CLANG_TIDY": true,
+        "ENABLE_TESTING": true
+      }
+    },
+    {
+      "name": "windows-clang-release",
+      "description": "Target Windows with the clang compiler, release build type and user configuration",
+      "inherits": [ "platform-windows", "compiler-clang-mvc", "build-configuration-release" ],
+      "displayName": "Clang MVC Release",
       "cacheVariables": {
         "ENABLE_CLANG_TIDY": false,
         "ENABLE_TESTING": true
@@ -32,7 +50,6 @@
       "description": "Target Unix-like OS with the gcc compiler, debug build type",
       "inherits": [ "platfrom-unix-like", "compiler-gcc", "build-configuration-debug" ],
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": false,
         "ENABLE_TESTING": true
       }
     },
@@ -42,7 +59,6 @@
       "description": "Target Unix-like OS with the gcc compiler, release build type",
       "inherits": [ "platfrom-unix-like", "compiler-gcc", "build-configuration-release" ],
       "cacheVariables": {
-        "ENABLE_CLANG_TIDY": false,
         "ENABLE_TESTING": true
       }
     }
