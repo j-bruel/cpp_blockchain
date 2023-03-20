@@ -61,7 +61,6 @@ cmake --preset <preset_name>
 cmake --build out/<preset_name>
 ```
 
-
 ## Debug
 
 ### Debug with Visual Studio
@@ -72,11 +71,17 @@ cmake --build out/<preset_name>
 - Go inside the build directory <project_directory/out/<preset_name>/bin
 - run ./cpp_blockchain(.exe)
 
-
 ## Test
 The **ENABLE_TESTING** variable must be set in the CMakeUserPresets to have the tests included in the project build and be able to see them in Visual Studio interface.
 
 To run the tests, you can change the start-up item to "tests_my_blockchain.exe" (on Windows)/"tests_my_blockchain (runtime\tests_my_blockchain)" (on Linux) and then run it through that.
+
+## Build images
+
+- To build development environment image (for developing purpose only) : **docker compose --profile devenv up -d**
+- To run dockerized tests (useful for CI pipeline) : **docker compose --profile test up --exit-code-from test**
+- To build production image : **docker compose --profile production build**
+- To run dockerized server : **docker compose --profile production up**
 
 ## Known issues
 

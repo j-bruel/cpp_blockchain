@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-# Add build script to make test & propduction work
+# Review presets systems with more sub-presets (gcc, release, debug ...)
 
 project(cpp_blockchain)
 

@@ -66,6 +66,7 @@ ENV ENABLE_TESTING="ON"
 WORKDIR $CENTOR_HOME/cpp_blockchain
 RUN cmake --preset linux-gcc-release
 RUN cmake --build ./out/linux-gcc-release
+RUN cmake --install ./out/linux-gcc-release
 
 FROM build AS test
 
@@ -79,14 +80,14 @@ ENTRYPOINT $CENTOR_HOME/cpp_blockchain/out/linux-gcc-release/runtime/tests_my_bl
 # that have to go in production
 FROM base as runtime
 
-ARG CENTOR_USER=centor
-ARG CENTOR_HOME=/home/$CENTOR_USER
+ARG CENTOR_USER
+ARG CENTOR_HOME
 
 # prepare the machine
 RUN mkdir cpp_blockchain
 
 # copy all requires binaries and files
-COPY --from=build $CENTOR_HOME/cpp_blockchain/_out/RelWithDebInfo/install/bin cpp_blockchain/
+COPY --from=build $CENTOR_HOME/cpp_blockchain/out/linux-gcc-release/install/bin cpp_blockchain/
 
 WORKDIR /cpp_blockchain/
 
