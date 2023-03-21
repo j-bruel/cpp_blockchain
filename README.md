@@ -10,7 +10,10 @@ Inside this repository, you will found:
 
 ## Current state
 
-* Compiles with Windows Visual 2022/C++23, Clang-cl (MVC-Clang) 2022 and Linux/gcc12
+Compiles with:
+* Windows Visual 2022/C++23 & Clang-cl (MVC-Clang) 16
+* Linux/gcc12
+* MacOS/Clang 15
 
 ## Prerequisites
 
@@ -37,8 +40,10 @@ Go to [docker](https://github.com/j-bruel/cpp_blockchain/blob/master/docker) fol
 - Password: **centor**
 
 ### Prerequisites for MacOS build target
-
-... Later on ...
+- Install XCode
+- Install brew: **/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"**
+- Install pkg-config: brew install pkg-config
+- Install LLVM: brew install llvm
 
 ## How to build
 
@@ -88,4 +93,9 @@ To run the tests, you can change the start-up item to "tests_my_blockchain.exe" 
 
 ## Known issues
 
-No issues to declare for now.
+### CLion not up to date
+To use CLion on MacOS or Linux, the preset version need to be downgraded to v3.
+
+### Clang 16 on MacOS
+Clang 16 is not available using brew for now.
+Because clang 15 is not integrating all c++20 feature, std::jthread were replaced by std::thread and additional build flag has been added to enable c++20 feature like ranges.
