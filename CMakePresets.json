@@ -1,8 +1,8 @@
 {
-  "version": 5,
+  "version": 3,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 25,
+    "minor": 24,
     "patch": 0
   },
   "configurePresets": [
@@ -48,6 +48,15 @@
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
           "intelliSenseMode": "windows-clang-x64"
         }
+      }
+    },
+    {
+      "name": "compiler-clang",
+      "description": "Clang settings",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
       }
     },
     {

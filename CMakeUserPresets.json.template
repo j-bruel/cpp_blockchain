@@ -1,8 +1,8 @@
 {
-  "version": 5,
+  "version": 3,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 25,
+    "minor": 24,
     "patch": 0
   },
   "configurePresets": [
@@ -60,6 +60,26 @@
       "inherits": [ "platfrom-unix-like", "compiler-gcc", "build-configuration-release" ],
       "cacheVariables": {
         "ENABLE_TESTING": true
+      }
+    },
+    {
+      "name": "macos-clang-debug",
+      "displayName": "Clang Debug",
+      "description": "Target Unix-like OS with the gcc compiler, debug build type",
+      "inherits": [ "platfrom-unix-like", "compiler-clang", "build-configuration-debug" ],
+      "cacheVariables": {
+        "ENABLE_TESTING": true,
+        "ENABLE_CLANG_TIDY": false
+      }
+    },
+    {
+      "name": "macos-gcc-release",
+      "displayName": "Clang Release",
+      "description": "Target Unix-like OS with the gcc compiler, release build type",
+      "inherits": [ "platfrom-unix-like", "compiler-clang", "build-configuration-release" ],
+      "cacheVariables": {
+        "ENABLE_TESTING": true,
+        "ENABLE_CLANG_TIDY": false
       }
     }
   ]

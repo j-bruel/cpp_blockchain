@@ -17,9 +17,10 @@ int main()
   constexpr auto server_port = 8000;
   centor::blockchain blockchain;
   srv::listener http_server_listener(blockchain, server_addr, server_port);
-  const std::jthread mining_thread(&mining_main, std::ref(blockchain));
+  std::thread mining_thread(&mining_main, std::ref(blockchain));
 
   spdlog::info("Running HTTP server");
   http_server_listener.listen();
+  mining_thread.join();
   return EXIT_SUCCESS;
 }
