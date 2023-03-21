@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <spdlog/spdlog.h>
+#include <ranges>
 
 namespace centor
 {
