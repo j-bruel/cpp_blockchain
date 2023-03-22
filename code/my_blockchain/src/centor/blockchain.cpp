@@ -2,8 +2,8 @@
 
 #include "centor/blockchain_handling_exception.hpp"
 
+#include <cpplog/log.hpp>
 #include <iostream>
-#include <spdlog/spdlog.h>
 #include <ranges>
 
 namespace centor
@@ -18,7 +18,7 @@ namespace centor
 
     genesis_block.self_mine_hash_block(difficulty);
     chain.emplace_back(genesis_block);
-    spdlog::info("Genesis block inserted {}!", genesis_block.get_hash());
+    cpplog::info("Genesis block inserted {}!", genesis_block.get_hash());
   }
 
   void blockchain::to_json(nlohmann::json &json) const
@@ -37,7 +37,7 @@ namespace centor
     new_block.link_parent_block(*last_block);
     new_block.self_mine_hash_block(difficulty);
     chain.push_back(new_block);
-    spdlog::info("Block added to the chain {}!", new_block.get_hash());
+    cpplog::info("Block added to the chain {}!", new_block.get_hash());
   }
 
   std::optional<block> blockchain::get_last_block() const noexcept
