@@ -2,8 +2,8 @@ project(my_blockchain)
 
 find_package(fmt REQUIRED)
 find_package(cryptopp CONFIG REQUIRED)
-find_package(spdlog CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
+find_package(cpplog CONFIG REQUIRED)
 
 set(MY_BLOCKCHAIN_CPP_SOURCES	"src/centor/block.cpp"
 								"src/centor/blockchain.cpp")
@@ -25,7 +25,7 @@ target_include_directories(${PROJECT_NAME}	PRIVATE
 											INTERFACE
 												$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 target_compile_definitions(${PROJECT_NAME} PRIVATE ${PROJECT_NAME}_EXPORTS)
-target_link_libraries(${PROJECT_NAME}	PRIVATE fmt::fmt cryptopp::cryptopp spdlog::spdlog
+target_link_libraries(${PROJECT_NAME}	PRIVATE fmt::fmt cryptopp::cryptopp centor::cpplog
 										PUBLIC nlohmann_json::nlohmann_json tools)
 
 include(GenerateExportHeader)

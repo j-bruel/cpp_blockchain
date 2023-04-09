@@ -3,9 +3,9 @@
 	"name": "cppblockchain",
 	"version": "1.0.0",
 	"dependencies": [
+		"cpplog",
 		"fmt",
 		"cryptopp",
-		"spdlog",
 		"cpp-httplib",
 		"nlohmann-json",
 		"gtest"
